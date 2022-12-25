@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  django:
+    build:  
+      context: .
+      dockerfile: ./docker-app/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./db:/app/db
+
+  backup:
+    build: 
+      context: .
+      dockerfile: ./docker-backup/Dockerfile
+    volumes:
+      - ./db:/data
+      - ./backup:/backup-dir
